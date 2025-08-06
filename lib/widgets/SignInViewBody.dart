@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gdg/views/SignInview.dart';
 import 'package:gdg/widgets/LoginForm.dart';
+import 'package:gdg/widgets/SignInForm.dart';
 
-class LoginViewBody extends StatelessWidget {
-  const LoginViewBody({super.key});
+class SignInViewBody extends StatelessWidget {
+  const SignInViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,36 +25,21 @@ class LoginViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [SvgPicture.asset("assets/shoping.svg", height: 100)],
             ),
-            LoginForm(),
+            SignInForm(),
             SizedBox(height: 50),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                SizedBox(width: 50),
-                Icon(Icons.facebook, size: 42, color: Colors.blue),
-                Icon(Icons.facebook, size: 42, color: Colors.blue),
-                SizedBox(width: 50),
-              ],
-            ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Don't have an acount? ",
+                  "alredy have an account? ",
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return SignInView();
-                        },
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
-                  child: Text("SignIn", style: TextStyle(color: Colors.blue)),
+                  child: Text("Login", style: TextStyle(color: Colors.blue)),
                 ),
               ],
             ),

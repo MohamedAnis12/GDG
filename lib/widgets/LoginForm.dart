@@ -24,6 +24,16 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           Text("Email Address", style: TextStyle(color: Colors.grey)),
           CustomeTextFormField(
+            validator: (value){
+            if(value!.isEmpty)
+              {
+                return "this field is requierd";
+              }
+              else if(!value.endsWith("@gmail.com"))
+              {
+                  return "Email should end with @gmail.com";
+              }
+            },
             hintText: "e.g name@gmail.com",
             controlar: emailControlar,
           ),
@@ -32,6 +42,21 @@ class _LoginFormState extends State<LoginForm> {
 
           Text("Password", style: TextStyle(color: Colors.grey)),
           CustomeTextFormField(
+            validator: (value)
+            {
+              if(value!.isEmpty)
+              {
+                return "this field is requierd";
+              }
+              else if(value.length<8)
+              {
+                return"password too short";
+              }
+              else if(value.length>16)
+              {
+                return "Password too long";
+              }
+            },
             hintText: "e.g ***********",
             controlar: passwordControlar,
             password: true,
@@ -53,6 +78,7 @@ class _LoginFormState extends State<LoginForm> {
             ],
           ),
           CustommeButton(
+            text: "Login",
             onTap: () {
               if (_formKey.currentState!.validate()) {}
             },

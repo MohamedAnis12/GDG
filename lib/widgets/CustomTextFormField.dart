@@ -4,10 +4,10 @@ class CustomeTextFormField extends StatelessWidget {
   const CustomeTextFormField({
     super.key,
     required this.hintText,
-    required this.controlar,  this.password=false,
+    required this.controlar,  this.password=false,required this.validator,
   });
   final String hintText;
-
+final String? Function(String?)? validator;
   final TextEditingController controlar;
 final bool password;
   @override
@@ -29,9 +29,7 @@ final bool password;
         obscureText: password,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         controller: controlar,
-        validator: (valu) {
-          if (valu!.isEmpty) return "this field is requierd";
-        },
+        validator: validator,
         decoration: InputDecoration(
           border: OutlineInputBorder(borderSide: BorderSide.none),
           hint: Text(hintText, style: TextStyle(color: Colors.grey)),
