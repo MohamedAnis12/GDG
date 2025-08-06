@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gdg/views/my_informaion_view.dart';
 import 'package:gdg/widgets/CustomTextFormField.dart';
 import 'package:gdg/widgets/CustomeButton.dart';
 
@@ -73,7 +74,16 @@ class _SignInFormState extends State<SignInForm> {
           CustommeButton(
             text: "SignIn",
             onTap: () {
-              if (_formKey.currentState!.validate()) {}
+              if (_formKey.currentState!.validate()) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MyInformaionView();
+                    },
+                  ),
+                );
+              }
             },
           ),
         ],

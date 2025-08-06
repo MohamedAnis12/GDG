@@ -8,7 +8,17 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body:SignInViewBody()
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SignInViewBody(),
     );
   }
 }

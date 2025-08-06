@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gdg/widgets/LoginForm.dart';
 import 'package:gdg/widgets/SignInForm.dart';
 
 class SignInViewBody extends StatelessWidget {
@@ -14,10 +13,10 @@ class SignInViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 80),
-            Text("Welcome back!", style: TextStyle(fontSize: 32)),
+            SizedBox(height: 20),
+            Text("SignIn", style: TextStyle(fontSize: 32)),
             Text(
-              "Login to your existing account",
+              "Plese Enter your information",
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
             SizedBox(height: 20),
