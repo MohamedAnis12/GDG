@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gdg/views/LoginView.dart';
+import 'package:gdg/views/Home.dart';
 
 void main() {
   runApp(const EcommerceApp());
@@ -10,10 +10,6 @@ class EcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Loginview(
-        
-      ),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: Home());
   }
 }
