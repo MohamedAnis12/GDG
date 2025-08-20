@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:gdg/views/Home.dart';
+import 'package:gdg/views/burger_app.dart';
+import 'package:gdg/widgets/Change_them_provideor.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const EcommerceApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const FoodApp(),
+    ),
+  );
 }
 
-class EcommerceApp extends StatelessWidget {
-  const EcommerceApp({super.key});
+class FoodApp extends StatelessWidget {
+  const FoodApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Home());
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: themeProvider.currentTheme, // ✅ كده صح
+      home: const Scaffold(body: BurgerApp()),
+    );
   }
 }
