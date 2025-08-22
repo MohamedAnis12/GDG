@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:gdg/views/burger_app.dart';
-import 'package:gdg/widgets/Change_them_provideor.dart';
+import 'package:gdg/Views/Home_view.dart';
+import 'package:gdg/model/task_model.dart';
+import 'package:gdg/viewModel/task_view_model.dart';
 import 'package:provider/provider.dart';
-//assi 18
+
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
+      create: (_) => TaskViewModel(),
       child: const FoodApp(),
     ),
   );
@@ -17,14 +18,6 @@ class FoodApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
-      themeMode: themeProvider.currentTheme, // ✅ كده صح
-      home: const Scaffold(body: BurgerApp()),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeView());
   }
 }

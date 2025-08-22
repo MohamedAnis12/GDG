@@ -1,69 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:gdg/widgets/Custom_Food_Card.dart';
-import 'package:gdg/widgets/Custom_Text_Field.dart';
-import 'package:gdg/widgets/customListView.dart';
+import 'package:gdg/Widgets/Custom_text_field.dart';
+import 'package:gdg/model/task_model.dart';
+import 'package:gdg/viewModel/task_view_model.dart';
+import 'package:gdg/widgets/Custom_button.dart';
+import 'package:provider/provider.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
 
   @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _textController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 50),
-            Row(
-              children: [
-                Icon(Icons.location_on, color: Color(0xffff8800), size: 32),
-                Text(
-                  "Alex, EGY",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-                Icon(
-                  Icons.keyboard_arrow_down_outlined,
-                  color: Color(0xffff8800),
-                  size: 32,
-                ),
-              ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          CustomTextField(controller: _textController),
+          CustomButton(textController: _textController, formKey: _formKey),
+          const SizedBox(height: 16),
+          Expanded(
+            child: Consumer<TaskViewModel>(
+              builder: (context, viewModel, child) {
+                return ListView.builder(
+                  itemCount: viewModel.tasks.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: ListTile(
+                          title: Text(viewModel.tasks[index].task),
+                          trailing: IconButton(
+                            onPressed: () {
+                              Provider.of<TaskViewModel>(
+                                context,
+                                listen: false,
+                              ).deleteTask(index);
+                            },
+                            icon: Icon(Icons.delete),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      'Order your food fast and free',
-                      style: TextStyle(fontSize: 32),
-                      softWrap: true,
-                    ),
-                  ),
-                  Image.asset("Images/delivery-bike.png", height: 100),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            CustomTextField(),
-            SizedBox(height: 70, child: CustomListView()),
-            SizedBox(
-              height: 400,
-              child: GridView.builder(
-                itemCount: 5,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: .78,
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (context, index) {
-                  return CustomFoodCard();
-                },
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
-
-
