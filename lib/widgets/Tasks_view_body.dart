@@ -44,14 +44,7 @@ class TasksViewBody extends StatelessWidget {
 
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return AddTaskView();
-                },
-              ),
-            );
+            Get.to(AddTaskView());
           },
           child: Text("Add task"),
         ),

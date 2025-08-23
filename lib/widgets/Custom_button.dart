@@ -30,7 +30,7 @@ class CustomButton extends StatelessWidget {
                 ),
               ),
             );
-            Navigator.pop(context);
+            Get.back();
           }
         },
         child: Container(
