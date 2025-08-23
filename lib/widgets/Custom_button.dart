@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gdg/controllar/task_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomButton extends StatelessWidget {
   CustomButton({
@@ -30,7 +31,7 @@ class CustomButton extends StatelessWidget {
                 ),
               ),
             );
-            Get.back();
+            context.go('/');
           }
         },
         child: Container(

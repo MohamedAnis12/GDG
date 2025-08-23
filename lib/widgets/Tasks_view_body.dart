@@ -4,6 +4,7 @@ import 'package:gdg/controllar/task_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/state_manager.dart';
+import 'package:go_router/go_router.dart';
 
 class TasksViewBody extends StatelessWidget {
   TasksViewBody({super.key});
@@ -44,7 +45,7 @@ class TasksViewBody extends StatelessWidget {
 
         ElevatedButton(
           onPressed: () {
-            Get.to(AddTaskView());
+            context.go('/add-task');
           },
           child: Text("Add task"),
         ),

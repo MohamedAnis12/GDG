@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gdg/Views/Tasks_view.dart';
+import 'package:gdg/app_router.dart';
 import 'package:gdg/controllar/task_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
@@ -13,6 +14,9 @@ class FoodApp extends StatelessWidget {
   final TaskController taskController = Get.put(TaskController());
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(debugShowCheckedModeBanner: false, home: TasksView());
+    return MaterialApp.router(
+      routerConfig: router,
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
