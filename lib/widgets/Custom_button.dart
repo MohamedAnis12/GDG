@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class CustomButton extends StatelessWidget {
-   CustomButton({
+  CustomButton({
     super.key,
     required this.formKey,
     required this.textController,
   });
   final GlobalKey<FormState> formKey;
   final TextEditingController textController;
-  final TaskController taskController=Get.find();
+  final TaskController taskController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,6 +30,7 @@ class CustomButton extends StatelessWidget {
                 ),
               ),
             );
+            Navigator.pop(context);
           }
         },
         child: Container(

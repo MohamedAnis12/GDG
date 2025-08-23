@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:gdg/widgets/home_view_body.dart';
+import 'package:gdg/Widgets/Tasks_view_body.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class TasksView extends StatelessWidget {
+  const TasksView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple,
         bottom: PreferredSize(
-          preferredSize: Size(20, 20),
+          preferredSize: Size(10, 10),
           child: Text(
-            "To-Do List [1]",
+            "Tasks",
             style: TextStyle(fontSize: 32, color: Colors.white),
           ),
         ),
+        backgroundColor: Colors.purple,
       ),
-      body: HomeViewBody(),
+      body: TasksViewBody(),
     );
   }
 }
