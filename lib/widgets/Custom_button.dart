@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:gdg/viewModel/task_view_model.dart';
-import 'package:provider/provider.dart';
+import 'package:gdg/controllar/task_controller.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
+   CustomButton({
     super.key,
     required this.formKey,
     required this.textController,
   });
   final GlobalKey<FormState> formKey;
   final TextEditingController textController;
+  final TaskController taskController=Get.find();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,11 +19,7 @@ class CustomButton extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           if (formKey.currentState!.validate()) {
-            Provider.of<TaskViewModel>(
-              context,
-              listen: false,
-            ).addTask(textController.text);
-
+            taskController.addTask(textController.text);
             textController.clear();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

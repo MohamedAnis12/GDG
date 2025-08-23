@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gdg/Views/Home_view.dart';
-import 'package:gdg/model/task_model.dart';
-import 'package:gdg/viewModel/task_view_model.dart';
-import 'package:provider/provider.dart';
+import 'package:gdg/controllar/task_controller.dart';
+import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => TaskViewModel(),
-      child: const FoodApp(),
-    ),
-  );
+  runApp( FoodApp());
 }
 
 class FoodApp extends StatelessWidget {
-  const FoodApp({super.key});
-
+   FoodApp({super.key});
+  final TaskController taskController = Get.put(TaskController());
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeView());
+    return GetMaterialApp(debugShowCheckedModeBanner: false, home: HomeView());
   }
 }

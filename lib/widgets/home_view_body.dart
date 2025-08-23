@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gdg/Widgets/Custom_text_field.dart';
-import 'package:gdg/model/task_model.dart';
-import 'package:gdg/viewModel/task_view_model.dart';
+import 'package:gdg/controllar/task_controller.dart';
 import 'package:gdg/widgets/Custom_button.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -15,6 +15,7 @@ class HomeViewBody extends StatefulWidget {
 class _HomeViewBodyState extends State<HomeViewBody> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _textController = TextEditingController();
+  TaskController taskController=Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -26,37 +27,32 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           CustomButton(textController: _textController, formKey: _formKey),
           const SizedBox(height: 16),
           Expanded(
-            child: Consumer<TaskViewModel>(
-              builder: (context, viewModel, child) {
-                return ListView.builder(
-                  itemCount: viewModel.tasks.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: ListTile(
-                          title: Text(viewModel.tasks[index].task),
-                          trailing: IconButton(
-                            onPressed: () {
-                              Provider.of<TaskViewModel>(
-                                context,
-                                listen: false,
-                              ).deleteTask(index);
-                            },
-                            icon: Icon(Icons.delete),
-                          ),
+            child: Obx(() {
+              return ListView.builder(
+                itemCount: taskController.tasks.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: ListTile(
+                        title: Text(taskController.tasks[index].task),
+                        trailing: IconButton(
+                          onPressed: () {
+                            taskController.deleteTask(index);
+                          },
+                          icon: Icon(Icons.delete),
                         ),
                       ),
-                    );
-                  },
-                );
-              },
-            ),
+                    ),
+                  );
+                },
+              );
+            }),
           ),
         ],
       ),
